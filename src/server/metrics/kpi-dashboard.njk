@@ -1,0 +1,31 @@
+{% extends 'layouts/page.njk' %}
+
+{% block pageContent %}
+  {# Header section with more breathing room #}
+  <div class="dashboard-header govuk-!-margin-bottom-6">
+    {{ appHeading({ 
+      text: heading, 
+      caption: "Monitor your key performance indicators and user engagement metrics",
+      classes: "govuk-heading-xl govuk-!-margin-bottom-2"
+    }) }}
+    
+    {# Optional: Project Name selector area from mockup #}
+    <div class="project-selector">
+      <span class="govuk-body-s govuk-!-font-weight-bold">Project Name:</span>
+      <span class="govuk-body-s">AirQuality-Data-Mocked</span>
+    </div>
+  </div>
+
+  {# 1. KPI SECTION: Removed grid-column-full to allow internal flex/grid logic #}
+  <section class="kpi-section" aria-label="Key Performance Indicators">
+    {% include 'metrics/partials/_kpi-cards.njk' %}
+  </section>
+
+  {# 2. CHARTS SECTION: Changed to a full-width container for the 2x2 grid #}
+  <section class="charts-section govuk-!-margin-top-8">
+    {% include 'metrics/partials/_charts.njk' %}
+  </section>
+
+  {# Data injection for Chart.js #}
+  <script>window.__INITIAL_DATA__ = {{ initialData | safe }};</script>
+{% endblock %}

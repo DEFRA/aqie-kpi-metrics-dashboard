@@ -1,0 +1,65 @@
+<div class="charts-grid">
+  {# 1. User Satisfaction Scores #}
+  <div class="card chart-card">
+    <div class="chart-card__header">
+      <div>
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">User Satisfaction Scores</h2>
+        <p class="govuk-body-s govuk-hint">Data-driven satisfaction metrics showing declining trend</p>
+      </div>
+      <span class="chart-type-tag">Bar Chart</span>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="satisfactionChart" role="img" aria-label="User satisfaction scores" aria-describedby="satisfactionChartDesc" data-chart-type="bar"></canvas>
+      <div id="satisfactionChartDesc" class="govuk-visually-hidden">Bar chart showing user satisfaction scores.</div>
+    </div>
+  </div>
+
+  {# 2. Completion Rate Analysis #}
+  <div class="card chart-card">
+    <div class="chart-card__header">
+      <div>
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Completion Rate Analysis</h2>
+        <p class="govuk-body-s govuk-hint">Completion rates showing performance decline</p>
+      </div>
+      <span class="chart-type-tag">Bar Chart</span>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="completionChart" role="img" aria-label="Completion rate analysis" aria-describedby="completionChartDesc" data-chart-type="bar"></canvas>
+      <div id="completionChartDesc" class="govuk-visually-hidden">Bar chart showing completion rates over time.</div>
+    </div>
+  </div>
+
+  {# 3. Cost per Transaction #}
+  <div class="card chart-card">
+    <div class="chart-card__header">
+      <div>
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Cost per Transaction</h2>
+        <p class="govuk-body-s govuk-hint">Rising costs indicating operational challenges</p>
+      </div>
+      <span class="chart-type-tag">Line Chart</span>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="costChart" role="img" aria-label="Cost per transaction" aria-describedby="costChartDesc" data-chart-type="line"></canvas>
+      <div id="costChartDesc" class="govuk-visually-hidden">Line chart showing cost per transaction over time.</div>
+    </div>
+  </div>
+
+  {# 4. Digital Take Up Trend #}
+  <div class="card chart-card">
+    <div class="chart-card__header">
+      <div>
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Digital Take Up Trend</h2>
+        <p class="govuk-body-s govuk-hint">Maintaining 100% digital adoption across all periods</p>
+      </div>
+      <span class="chart-type-tag">Line Chart</span>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="analyticsChart" role="img" aria-label="Digital take-up over time" aria-describedby="analyticsChartDesc" data-chart-type="line"></canvas>
+      <div id="analyticsChartDesc" class="govuk-visually-hidden">Line chart showing digital take-up trend.</div>
+    </div>
+  </div>
+</div>
