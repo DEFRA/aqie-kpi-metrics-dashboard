@@ -1,0 +1,41 @@
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">Customer feedback</h1>
+
+    {# The main container now has a subtle border and background to match image_67ea2c.jpg #}
+    <div class="chart-card" style="background: #ffffff; border: 1px solid #f3f2f1; padding: 30px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-6">Recent Feedback</h2>
+      
+      <div class="feedback-list">
+        {% for item in feedback %}
+          <div class="feedback-item" style="padding: 25px 0;">
+            <p class="govuk-body govuk-!-margin-bottom-2" style="font-size: 19px; color: #0b0c0c;">
+              "{{ item.text }}"
+            </p>
+            
+            <div class="stars-row" style="display: flex; align-items: center; gap: 4px;">
+              {% for i in [1, 2, 3, 4, 5] %}
+                <span style="color: {{ '#ffbf47' if i <= item.stars else '#b1b4b6' }}; font-size: 24px;">★</span>
+              {% endfor %}
+              <span class="govuk-body-s" style="color: #505a5f; margin-left: 12px; margin-top: 4px;">
+                — {{ item.author }}
+              {% if loop.index == 1 %}(Verified User){% endif %}
+              </span>
+            </div>
+
+            {# Adds the horizontal line between items, except after the last one #}
+            {% if not loop.last %}
+              <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="margin-top: 30px; border-bottom: 1px solid #f3f2f1;">
+            {% endif %}
+          </div>
+        {% else %}
+          <p class="govuk-body">No feedback available at this time.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Generate and view detailed reports</h1>
+    <p class="govuk-body govuk-!-margin-bottom-7" style="color: #505a5f;">Generate and view detailed reports</p>
+
+    <div class="govuk-grid-row">
+      {# Monthly Report #}
+      <div class="govuk-grid-column-one-third">
+        <div class="chart-card" style="padding: 30px; height: 450px; background: #fff; border: 1px solid #f3f2f1; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+          <h2 class="govuk-heading-m">Monthly Report</h2>
+          <p class="govuk-body" style="color: #505a5f; margin-bottom: 30px;">Comprehensive monthly analytics</p>
+          
+          <button class="govuk-button" style="background-color: #1d70b8; margin-top: auto;">
+            <span style="margin-right: 8px;">📥</span> Download Report
+          </button>
+        </div>
+      </div>
+
+      {# Weekly Summary #}
+      <div class="govuk-grid-column-one-third">
+        <div class="chart-card" style="padding: 30px; height: 450px; background: #fff; border: 1px solid #f3f2f1; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+          <h2 class="govuk-heading-m">Weekly Summary</h2>
+          <p class="govuk-body" style="color: #505a5f; margin-bottom: 30px;">Quick weekly performance overview</p>
+          
+          <button class="govuk-button" style="background-color: #1d70b8;">
+            <span style="margin-right: 8px;">📥</span> Download Report
+          </button>
+        </div>
+      </div>
+
+      {# Export Data #}
+      <div class="govuk-grid-column-one-third">
+        <div class="chart-card" style="padding: 30px; height: 450px; background: #fff; border: 1px solid #f3f2f1; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+          <h2 class="govuk-heading-m">Export Data</h2>
+          <p class="govuk-body" style="color: #505a5f; margin-bottom: 20px;">Export analytics data in CSV or PDF format</p>
+          
+          {# The Nested Export Box #}
+          <div style="background: #ffffff; padding: 20px; border: 1px solid #ebedee; border-radius: 8px;">
+            <h3 class="govuk-heading-s" style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+              <span>📥</span> Export Data
+            </h3>
+            
+            <div class="govuk-form-group" style="margin-bottom: 15px;">
+              <label class="govuk-label govuk-body-s" for="format" style="color: #505a5f;">Export Format</label>
+              <div style="position: relative;">
+                <select class="govuk-select" id="format" name="format" style="width: 100%; padding-left: 35px;">
+                  <option value="csv">CSV File</option>
+                  <option value="pdf">PDF Document</option>
+                </select>
+                <span style="position: absolute; left: 10px; top: 8px;">📅</span>
+              </div>
+            </div>
+
+            <button class="govuk-button" style="width: 100%; background-color: #1d70b8; margin-bottom: 10px;">
+              📥 Export CSV
+            </button>
+            <p class="govuk-body-s" style="color: #505a5f; text-align: center; margin-bottom: 0;">
+              7 records available for export
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">Performance</h1>
+    <p class="govuk-body-l govuk-!-margin-bottom-8">System performance metrics and monitoring</p>
+
+    <div class="kpi-row" style="gap: 20px;">
+      
+      <div class="govuk-grid-column-one-half" style="padding: 0;">
+        <div class="chart-card">
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1" style="color: #0b0c0c;">Response Time</h3>
+          <div class="analytics-value">
+            {{ stats.responseTime }}
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-grid-column-one-half" style="padding: 0;">
+        <div class="chart-card">
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1" style="color: #0b0c0c;">Uptime</h3>
+          <div class="analytics-value">
+            {{ stats.uptime }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

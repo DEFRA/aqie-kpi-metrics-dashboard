@@ -1,0 +1,41 @@
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">Analytics</h1>
+    <p class="govuk-body-l govuk-!-margin-bottom-8">Detailed analytics and insights</p>
+
+    <div class="kpi-row" style="gap: 20px;">
+      
+      <div class="govuk-grid-column-one-third" style="padding: 0;">
+        <div class="chart-card">
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Page Views</h3>
+          <div class="analytics-value">
+            {{ stats.pageViews }}
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-grid-column-one-third" style="padding: 0;">
+        <div class="chart-card">
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Unique Visitors</h3>
+          <div class="analytics-value">
+            {{ stats.uniqueVisitors }}
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-grid-column-one-third" style="padding: 0;">
+        <div class="chart-card">
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Bounce Rate</h3>
+          <div class="analytics-value">
+            {{ stats.bounceRate }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

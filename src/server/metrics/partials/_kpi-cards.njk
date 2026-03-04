@@ -1,0 +1,82 @@
+<div class="govuk-grid-row kpi-row" role="region" aria-label="Key performance indicators">
+  
+  {# 1. User Satisfaction #}
+  <div class="govuk-grid-column-one-quarter">
+    <div class="kpi-card kpi-card--blue" role="group" aria-labelledby="kpi-satisfaction-heading">
+      <div class="kpi-card__header">
+        <h3 id="kpi-satisfaction-heading" class="govuk-body-s govuk-!-font-weight-bold govuk-!-margin-bottom-0">User Satisfaction</h3>
+        <span class="kpi-icon kpi-icon--star">★</span>
+      </div>
+      <p class="kpi-value govuk-heading-l">
+        {% if kpis.userSatisfaction is defined %}{{ kpis.userSatisfaction }}{% else %}—{% endif %}
+        <span class="kpi-suffix">/5</span>
+      </p>
+      {% if kpis.userSatisfactionChange is defined %}
+        <p class="kpi-change {{ 'kpi-change--negative' if kpis.userSatisfactionChange < 0 else 'kpi-change--positive' }} govuk-body-s">
+          {% if kpis.userSatisfactionChange < 0 %}▼{% else %}▲{% endif %} 
+          {{ kpis.userSatisfactionChange | abs | round(1) }}% from last period
+        </p>
+      {% endif %}
+      <p class="kpi-footer-text govuk-hint">142 satisfied users out of 198 responses</p>
+    </div>
+  </div>
+
+  {# 2. Completion Rate #}
+  <div class="govuk-grid-column-one-quarter">
+    <div class="kpi-card kpi-card--green" role="group" aria-labelledby="kpi-completion-heading">
+      <div class="kpi-card__header">
+        <h3 id="kpi-completion-heading" class="govuk-body-s govuk-!-font-weight-bold govuk-!-margin-bottom-0">Completion Rate</h3>
+        <span class="kpi-icon kpi-icon--trend">📈</span>
+      </div>
+      <p class="kpi-value govuk-heading-l">
+        {% if kpis.completionRate is defined %}{{ kpis.completionRate }}{% else %}—{% endif %}
+        <span class="kpi-suffix">%</span>
+      </p>
+      {% if kpis.completionRateChange is defined %}
+        <p class="kpi-change {{ 'kpi-change--negative' if kpis.completionRateChange < 0 else 'kpi-change--positive' }} govuk-body-s">
+          {% if kpis.completionRateChange < 0 %}▼{% else %}▲{% endif %} 
+          {{ kpis.completionRateChange | abs | round(1) }}% from last period
+        </p>
+      {% endif %}
+      <p class="kpi-footer-text govuk-hint">Data-driven completion metrics</p>
+    </div>
+  </div>
+
+  {# 3. Cost per Transaction #}
+  <div class="govuk-grid-column-one-quarter">
+    <div class="kpi-card kpi-card--amber" role="group" aria-labelledby="kpi-cost-heading">
+      <div class="kpi-card__header">
+        <h3 id="kpi-cost-heading" class="govuk-body-s govuk-!-font-weight-bold govuk-!-margin-bottom-0">Cost per Transaction</h3>
+        <span class="kpi-icon kpi-icon--currency">$</span>
+      </div>
+      <p class="kpi-value govuk-heading-l">
+        <span class="kpi-prefix">$</span>{% if kpis.costPerTransaction is defined %}{{ kpis.costPerTransaction }}{% else %}—{% endif %}
+      </p>
+      {% if kpis.costPerTransactionChange is defined %}
+        {# NOTE: For cost, increase (positive) is RED/Negative status, decrease is GREEN/Positive status #}
+        <p class="kpi-change {{ 'kpi-change--negative' if kpis.costPerTransactionChange > 0 else 'kpi-change--positive' }} govuk-body-s">
+          {% if kpis.costPerTransactionChange > 0 %}▲{% else %}▼{% endif %} 
+          {{ kpis.costPerTransactionChange | abs | round(1) }}% from last period
+        </p>
+      {% endif %}
+      <p class="kpi-footer-text govuk-hint">Increased operational costs</p>
+    </div>
+  </div>
+
+  {# 4. Digital Take-up #}
+  <div class="govuk-grid-column-one-quarter">
+    <div class="kpi-card kpi-card--green" role="group" aria-labelledby="kpi-digital-heading">
+      <div class="kpi-card__header">
+        <h3 id="kpi-digital-heading" class="govuk-body-s govuk-!-font-weight-bold govuk-!-margin-bottom-0">Digital Take Up</h3>
+        <span class="kpi-icon kpi-icon--bar">📊</span>
+      </div>
+      <p class="kpi-value govuk-heading-l">
+        {% if kpis.digitalTakeUp is defined %}{{ kpis.digitalTakeUp }}{% else %}—{% endif %}
+        <span class="kpi-suffix">%</span>
+      </p>
+      <p class="kpi-change govuk-body-s">~ 0% from last period</p>
+      <p class="kpi-footer-text govuk-hint">Full digital adoption maintained</p>
+    </div>
+  </div>
+
+</div>

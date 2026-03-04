@@ -1,0 +1,20 @@
+<form id="filtersForm" action="/analytics" method="get" class="govuk-form-group" aria-label="Filters">
+  <fieldset class="govuk-fieldset" role="group">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Filters</legend>
+
+    <div class="govuk-form-group govuk-!-margin-bottom-2">
+      <label class="govuk-label" for="filter-start">Start</label>
+      <input id="filter-start" name="start" type="date" class="govuk-input" />
+    </div>
+
+    <div class="govuk-form-group govuk-!-margin-bottom-2">
+      <label class="govuk-label" for="filter-end">End</label>
+      <input id="filter-end" name="end" type="date" class="govuk-input" />
+    </div>
+
+    <div class="govuk-form-group">
+      <button type="submit" class="govuk-button">Apply</button>
+      <button type="button" id="clearFilters" class="govuk-button govuk-button--secondary">Clear</button>
+    </div>
+  </fieldset>
+</form>
