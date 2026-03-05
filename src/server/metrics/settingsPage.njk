@@ -1,0 +1,304 @@
+{% extends 'layouts/page.njk' %}
+
+{% block pageContent %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-xl">Configuration</span>
+    <h1 class="govuk-heading-xl">Update KPI Parameters</h1>
+    <p class="govuk-body">Input the raw data below to calculate dashboard metrics.</p>
+
+    {# Project Name Selector #}
+    <div class="govuk-form-group govuk-!-margin-bottom-8">
+      <label class="govuk-label govuk-label--s" for="input-project-name">Project Name</label>
+      <select class="govuk-select" id="input-project-name">
+        <option value="Air Quality Service" selected>Air Quality Service</option>
+        <option value="Domestic Combustion">Domestic Combustion</option>
+      </select>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    {# SECTION 1: COMPLETION RATE #}
+    <section class="govuk-!-margin-bottom-9" style="border-left: 5px solid #1d70b8; padding-left: 20px;">
+      <h2 class="govuk-heading-m">1. Completion Rate</h2>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group">
+          <legend class="govuk-fieldset__legend">Date range</legend>
+          <div class="govuk-hint">Enter the start and end dates for this measurement period</div>
+          <div class="govuk-date-input" style="display: flex; gap: 20px; align-items: flex-end;">
+            <div class="govuk-date-input__item">
+              <label class="govuk-label" for="input-completion-date-from">From</label>
+              <input class="govuk-input govuk-input--width-10" id="input-completion-date-from" type="date">
+            </div>
+            <div class="govuk-date-input__item">
+              <label class="govuk-label" for="input-completion-date-to">To</label>
+              <input class="govuk-input govuk-input--width-10" id="input-completion-date-to" type="date">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="input-started">Number of transactions started</label>
+        <input class="govuk-input govuk-input--width-10" id="input-started" type="number" step="1">
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="input-completed">Number of transactions completed</label>
+        <input class="govuk-input govuk-input--width-10" id="input-completed" type="number" step="1">
+      </div>
+    </section>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    {# SECTION 2: COST PER TRANSACTION #}
+    <section class="govuk-!-margin-bottom-9" style="border-left: 5px solid #1d70b8; padding-left: 20px;">
+      <h2 class="govuk-heading-m">2. Cost Per Transaction</h2>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group">
+          <legend class="govuk-fieldset__legend">Date range</legend>
+          <div class="govuk-hint">Enter the start and end dates for this measurement period</div>
+          <div class="govuk-date-input" style="display: flex; gap: 20px; align-items: flex-end;">
+            <div class="govuk-date-input__item">
+              <label class="govuk-label" for="input-cost-date-from">From</label>
+              <input class="govuk-input govuk-input--width-10" id="input-cost-date-from" type="date">
+            </div>
+            <div class="govuk-date-input__item">
+              <label class="govuk-label" for="input-cost-date-to">To</label>
+              <input class="govuk-input govuk-input--width-10" id="input-cost-date-to" type="date">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="input-total-run-cost">Total run cost (&pound;)</label>
+        <div class="govuk-hint">Enter the total cost or use the cost breakdown below to calculate it.</div>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+          <input class="govuk-input govuk-input--width-10"
+                 id="input-total-run-cost"
+                 type="number"
+                 step="0.01"
+                 readonly>
+        </div>
+      </div>
+
+      {# Cost Breakdown Dropdown #}
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">Cost breakdown</span>
+        </summary>
+        <div class="govuk-details__text">
+          <table class="govuk-table govuk-table--small-text-until-tablet">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header" style="width: 70%;">Cost category</th>
+                <th scope="col" class="govuk-table__header" style="width: 30%;">Amount (&pound;)</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">1. Accommodation and capital charges</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-accommodation" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">2. Fixtures, fittings, maintenance &amp; utilities</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-fixtures" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">3. Office equipment and IT systems</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-office-equipment" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">4. Postage, printing &amp; telecoms</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-postage" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">5. Employment and training costs</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-employment" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">6. Overheads (payroll, audit, legal, management)</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-overheads" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">7. Raw materials and stock</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-raw-materials" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">8. Research &amp; development</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-research" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">9. Depreciation of startup/one-off items</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-depreciation" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">10. Taxes (VAT, council tax, stamp duty)</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-taxes" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">11. Capital charges (if not paid earlier)</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-capital-charges" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">12. Insurance premiums</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-insurance" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">13. Sub-contractor fees</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-subcontractor" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">14. Distribution &amp; transport costs</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-distribution" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">15. Service promotion costs</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-promotion" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">16. Bad debts</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-bad-debts" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">17. Provisions for future liabilities</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-provisions" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">18. All costs for assisted digital support</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-digital-support" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">19. Shared item/call centre cost</td>
+                <td class="govuk-table__cell">
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">&pound;</div>
+                    <input class="govuk-input govuk-input--width-5 cost-item" id="cost-shared-items" type="number" step="0.01" value="0">
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell govuk-!-font-weight-bold">Total</td>
+                <td class="govuk-table__cell govuk-!-font-weight-bold">
+                  &pound;<span id="cost-breakdown-total">0.00</span>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <button type="button" class="govuk-button" id="btn-calculate-costs">
+            Calculate total run cost
+          </button>
+        </div>
+      </details>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="input-total-transactions">Total transactions</label>
+        <input class="govuk-input govuk-input--width-10" id="input-total-transactions" type="number" step="1">
+      </div>
+    </section>
+
+    <button type="button" class="govuk-button" id="btn-submit">
+      Submit and Update Dashboard
+    </button>
+
+  </div>
+</div>
+{% endblock %}

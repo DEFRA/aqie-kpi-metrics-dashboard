@@ -1,43 +1,38 @@
-import { queryMetrics, getKPIs } from '../../data/mock-metrics.js'
-import { queryAnalytics } from '../../data/mock-analytics.js'
-import performanceData from '../../data/mock-performance.js'
-import feedbackData from '../../data/mock-feedback.js'
-
-// Helper for Overview/Metrics data
-function buildContext(request) {
-  const params = {
-    start: request.query.start,
-    end: request.query.end,
-    limit: request.query.limit
-  }
-  const data = queryMetrics(params)
-  const kpis = getKPIs(data)
-  return { data, kpis, initialData: JSON.stringify({ data, kpis }) }
-}
+// All mock data imports removed as files are deleted
 
 export const metricsPage = {
   handler(request, h) {
-    const { data, kpis, initialData } = buildContext(request)
+    // We send an empty object so the frontend script has a valid structure to read,
+    // even if it starts with 0 values.
+    const initialData = JSON.stringify({ data: {}, kpis: {} })
+
     return h.view('metrics/kpi-dashboard', {
       pageTitle: 'Overview',
       heading: 'KPI Dashboard',
-      data,
-      kpis,
       initialData,
       activePage: 'overview'
     })
   }
 }
 
+export const settingsPage = {
+  handler(request, h) {
+    return h.view('metrics/settingsPage', {
+      pageTitle: 'Settings',
+      heading: 'Update KPI Parameters',
+      activePage: 'settings'
+    })
+  }
+}
+
+// Simplified handlers for other pages since mock data is gone
 export const analyticsPage = {
   handler(request, h) {
-    const analyticsData = queryAnalytics()
-
     return h.view('metrics/analyticsPage', {
       pageTitle: 'Analytics',
       heading: 'Analytics Dashboard',
       activePage: 'analytics',
-      stats: analyticsData.summary
+      stats: {} // Empty state
     })
   }
 }
@@ -48,7 +43,7 @@ export const performancePage = {
       pageTitle: 'Performance',
       heading: 'Performance Insights',
       activePage: 'performance',
-      stats: performanceData.stats
+      stats: {} // Empty state
     })
   }
 }
@@ -59,7 +54,7 @@ export const userFeedbackPage = {
       pageTitle: 'User Feedback',
       heading: 'User Feedback',
       activePage: 'user-feedback',
-      feedback: feedbackData.comments
+      feedback: [] // Empty state
     })
   }
 }
@@ -70,16 +65,6 @@ export const reportsPage = {
       pageTitle: 'Reports',
       heading: 'Reports',
       activePage: 'reports'
-    })
-  }
-}
-
-export const settingsPage = {
-  handler(request, h) {
-    return h.view('metrics/settings', {
-      pageTitle: 'Settings',
-      heading: 'Account Settings',
-      activePage: 'settings'
     })
   }
 }
