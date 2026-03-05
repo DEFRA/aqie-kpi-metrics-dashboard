@@ -1,31 +1,58 @@
 {% extends 'layouts/page.njk' %}
 
 {% block pageContent %}
-  {# Header section with more breathing room #}
+  {# Header section #}
   <div class="dashboard-header govuk-!-margin-bottom-6">
-    {{ appHeading({ 
-      text: heading, 
+    {{ appHeading({
+      text: heading,
       caption: "Monitor your key performance indicators and user engagement metrics",
       classes: "govuk-heading-xl govuk-!-margin-bottom-2"
     }) }}
-    
-    {# Optional: Project Name selector area from mockup #}
-    <div class="project-selector">
-      <span class="govuk-body-s govuk-!-font-weight-bold">Project Name:</span>
-      <span class="govuk-body-s">AirQuality-Data-Mocked</span>
-    </div>
   </div>
 
-  {# 1. KPI SECTION: Removed grid-column-full to allow internal flex/grid logic #}
+  {# 1. KPI SECTION #}
   <section class="kpi-section" aria-label="Key Performance Indicators">
-    {% include 'metrics/partials/_kpi-cards.njk' %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <div class="kpi-card" id="card-completion-rate">
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-2" style="color: #0b0c0c;">Completion rate</h2>
+          <span class="govuk-heading-xl govuk-!-margin-bottom-1" id="display-completion-rate">0%</span>
+          <p class="govuk-body-s govuk-!-margin-0 kpi-card__source" id="source-completion-rate" style="color: #505a5f; display: none;">
+            Calculated from <strong id="source-completed">0</strong> completed of <strong id="source-started">0</strong> started
+          </p>
+          <span class="govuk-body-s kpi-card__date" id="date-completion-rate" style="display: none;"></span>
+        </div>
+      </div>
+
+      <div class="govuk-grid-column-one-half">
+        <div class="kpi-card" id="card-cost-per-transaction">
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-2" style="color: #0b0c0c;">Cost per transaction</h2>
+          <span class="govuk-heading-xl govuk-!-margin-bottom-1" id="display-cost-per-transaction">&pound;0.00</span>
+          <p class="govuk-body-s govuk-!-margin-0 kpi-card__source" id="source-cost-per-transaction" style="color: #505a5f; display: none;">
+            Calculated from &pound;<strong id="source-total-run-cost">0</strong> across <strong id="source-total-transactions">0</strong> transactions
+          </p>
+          <span class="govuk-body-s kpi-card__date" id="date-cost-per-transaction" style="display: none;"></span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  {# 2. CHARTS SECTION: Changed to a full-width container for the 2x2 grid #}
+  {# 2. CHARTS SECTION #}
   <section class="charts-section govuk-!-margin-top-8">
-    {% include 'metrics/partials/_charts.njk' %}
-  </section>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <h3 class="govuk-heading-m">Completion rate trend</h3>
+        <div class="chart-container" style="position: relative; height:300px; width:100%">
+          <canvas id="chart-completion"></canvas>
+        </div>
+      </div>
 
-  {# Data injection for Chart.js #}
-  <script>window.__INITIAL_DATA__ = {{ initialData | safe }};</script>
+      <div class="govuk-grid-column-one-half">
+        <h3 class="govuk-heading-m">Cost per transaction trend</h3>
+        <div class="chart-container" style="position: relative; height:300px; width:100%">
+          <canvas id="chart-cost"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

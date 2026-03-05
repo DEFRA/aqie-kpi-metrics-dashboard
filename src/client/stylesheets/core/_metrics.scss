@@ -101,15 +101,31 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-left: 6px solid #1d70b8;
+    border: 1px solid #b1b4b6;
+    border-left: 6px solid #b1b4b6;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   
     &__header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
     }
+
+    &__source {
+      font-size: 14px;
+      color: #505a5f;
+      line-height: 1.4;
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    // Active state — applied via JS when data is loaded
+    &--active {
+      background-color: #f3f2f1;
+      border-left: 6px solid #1d70b8;
+    }
   
-    // Expanded single-line declarations
     &--green {
       border-left-color: #00703c;
     }
