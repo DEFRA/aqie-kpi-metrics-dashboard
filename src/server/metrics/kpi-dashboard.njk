@@ -12,47 +12,114 @@
 
   {# 1. KPI SECTION #}
   <section class="kpi-section" aria-label="Key Performance Indicators">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-half">
+    <div class="govuk-grid-row kpi-row">
+
+      {# Card 1: Completion Rate #}
+      <div class="govuk-grid-column-one-quarter">
         <div class="kpi-card" id="card-completion-rate">
-          <h2 class="govuk-heading-s govuk-!-margin-bottom-2" style="color: #0b0c0c;">Completion rate</h2>
-          <span class="govuk-heading-xl govuk-!-margin-bottom-1" id="display-completion-rate">0%</span>
-          <p class="govuk-body-s govuk-!-margin-0 kpi-card__source" id="source-completion-rate" style="color: #505a5f; display: none;">
+          <div class="kpi-card__header">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Completion rate</h2>
+          </div>
+          <span class="kpi-value" id="display-completion-rate">0%</span>
+          <p class="govuk-body-s govuk-!-margin-0 kpi-card__source settings-hidden" id="source-completion-rate">
             Calculated from <strong id="source-completed">0</strong> completed of <strong id="source-started">0</strong> started
           </p>
-          <span class="govuk-body-s kpi-card__date" id="date-completion-rate" style="display: none;"></span>
+          <span class="govuk-body-s kpi-card__date settings-hidden" id="date-completion-rate"></span>
+          <span class="kpi-footer-text">Percentage of transactions completed end-to-end</span>
         </div>
       </div>
 
-      <div class="govuk-grid-column-one-half">
+      {# Card 2: Cost Per Transaction #}
+      <div class="govuk-grid-column-one-quarter">
         <div class="kpi-card" id="card-cost-per-transaction">
-          <h2 class="govuk-heading-s govuk-!-margin-bottom-2" style="color: #0b0c0c;">Cost per transaction</h2>
-          <span class="govuk-heading-xl govuk-!-margin-bottom-1" id="display-cost-per-transaction">&pound;0.00</span>
-          <p class="govuk-body-s govuk-!-margin-0 kpi-card__source" id="source-cost-per-transaction" style="color: #505a5f; display: none;">
+          <div class="kpi-card__header">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Cost per transaction</h2>
+          </div>
+          <span class="kpi-value" id="display-cost-per-transaction">&pound;0.00</span>
+          <p class="govuk-body-s govuk-!-margin-0 kpi-card__source settings-hidden" id="source-cost-per-transaction">
             Calculated from &pound;<strong id="source-total-run-cost">0</strong> across <strong id="source-total-transactions">0</strong> transactions
           </p>
-          <span class="govuk-body-s kpi-card__date" id="date-cost-per-transaction" style="display: none;"></span>
+          <span class="govuk-body-s kpi-card__date settings-hidden" id="date-cost-per-transaction"></span>
+          <span class="kpi-footer-text">Average cost to government per completed transaction</span>
         </div>
       </div>
+
+      {# Card 3: User Satisfaction (Swapped to 3rd) #}
+      <div class="govuk-grid-column-one-quarter">
+        <div class="kpi-card" id="card-user-satisfaction">
+          <div class="kpi-card__header">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-2">User satisfaction</h2>
+          </div>
+          <span class="kpi-value" id="display-user-satisfaction">0%</span>
+          <p class="govuk-body-s govuk-!-margin-0 kpi-card__source settings-hidden" id="source-user-satisfaction">
+            <strong id="source-satisfied-responses">0</strong> satisfied of <strong id="source-total-responses">0</strong> valid responses
+          </p>
+          <span class="govuk-body-s kpi-card__date settings-hidden" id="date-user-satisfaction"></span>
+          <span class="kpi-footer-text">Percentage of users who rated the service as satisfied or very satisfied</span>
+        </div>
+      </div>
+
+      {# Card 4: Digital Take-up (Swapped to last) #}
+      <div class="govuk-grid-column-one-quarter">
+        <div class="kpi-card" id="card-digital-takeup">
+          <div class="kpi-card__header">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Digital take-up</h2>
+          </div>
+          <span class="kpi-value" id="display-digital-takeup">0%</span>
+          <p class="govuk-body-s govuk-!-margin-0 kpi-card__source settings-hidden" id="source-digital-takeup">
+            <strong id="source-digital-transactions">0</strong> digital of <strong id="source-total-all-transactions">0</strong> total transactions
+          </p>
+          <span class="kpi-footer-text">Proportion of transactions completed online</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
   {# 2. CHARTS SECTION #}
   <section class="charts-section govuk-!-margin-top-8">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-half">
-        <h3 class="govuk-heading-m">Completion rate trend</h3>
-        <div class="chart-container" style="position: relative; height:300px; width:100%">
+    <div class="charts-grid">
+
+      <div class="chart-card">
+        <div class="chart-card__header">
+          <h3 class="govuk-heading-m">Completion rate trend</h3>
+          <span class="chart-type-tag">Line</span>
+        </div>
+        <div class="chart-container">
           <canvas id="chart-completion"></canvas>
         </div>
       </div>
 
-      <div class="govuk-grid-column-one-half">
-        <h3 class="govuk-heading-m">Cost per transaction trend</h3>
-        <div class="chart-container" style="position: relative; height:300px; width:100%">
+      <div class="chart-card">
+        <div class="chart-card__header">
+          <h3 class="govuk-heading-m">Cost per transaction trend</h3>
+          <span class="chart-type-tag">Line</span>
+        </div>
+        <div class="chart-container">
           <canvas id="chart-cost"></canvas>
         </div>
       </div>
+
+      <div class="chart-card">
+        <div class="chart-card__header">
+          <h3 class="govuk-heading-m">User satisfaction breakdown</h3>
+          <span class="chart-type-tag">Bar</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart-satisfaction"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card__header">
+          <h3 class="govuk-heading-m">Digital take-up trend</h3>
+          <span class="chart-type-tag">Line</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart-digital-takeup"></canvas>
+        </div>
+      </div>
+
     </div>
   </section>
 {% endblock %}

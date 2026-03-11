@@ -1,220 +1,258 @@
 // 1. Layout Overrides
 .app-main-wrapper {
-    display: flex;
-    max-width: none;
+  display: flex;
+  max-width: none;
+  padding: 0;
+  background-color: #f3f2f1;
+  min-height: 100vh;
+}
+
+.kpi-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.govuk-grid-column-one-quarter {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-sidebar {
+  width: 260px;
+  background-color: #dee0e2;
+  border-right: 1px solid #b1b4b6;
+  padding: 30px 15px;
+  flex-shrink: 0;
+
+  &__list {
     padding: 0;
-    background-color: #f3f2f1;
-    min-height: 100vh;
+    list-style: none;
   }
-  
-  .kpi-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-  }
-  
-  .govuk-grid-column-one-quarter {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .app-sidebar {
-    width: 260px;
-    background-color: #dee0e2;
-    border-right: 1px solid #b1b4b6;
-    padding: 30px 15px;
-    flex-shrink: 0;
-  
-    &__list {
-      padding: 0;
-      list-style: none;
-    }
-  
-    &__list-item {
-      margin-bottom: 12px;
-      transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-      border-radius: 6px;
-      background-color: transparent;
-      border: 1px solid #b1b4b6;
-  
-      .govuk-link {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 15px;
-        color: #505a5f;
-        font-size: 16px;
-        position: relative;
-        transition: color 0.2s;
-      }
-  
-      // Fixed :not() notation
-      &:hover:not(.app-sidebar__list-item--active) {
-        background-color: #ffffff;
-        border-color: #0b0c0c;
-  
-        .govuk-link {
-          color: #0b0c0c;
-        }
-      }
-  
-      &--active {
-        background-color: #ffffff;
-        border: 2px solid #0b0c0c;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-left: 6px solid #1d70b8;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-  
-      // Flattened nesting to solve max-nesting-depth
-      &--active .govuk-link {
-        font-weight: bold;
-        color: #1d70b8;
-        padding-left: 10px;
-      }
-    }
-  }
-  
-  .sidebar-label {
-    margin: 25px 0 10px 15px;
-    color: #0b0c0c;
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 1px;
-    font-weight: bold;
-  }
-  
-  .app-content-area {
-    flex-grow: 1;
-    padding: 40px;
-  }
-  
-  // 2. KPI Card Styling
-  .kpi-card {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+  &__list-item {
+    margin-bottom: 12px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    border-radius: 6px;
+    background-color: transparent;
     border: 1px solid #b1b4b6;
-    border-left: 6px solid #b1b4b6;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-  
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
 
-    &__source {
-      font-size: 14px;
-      color: #505a5f;
-      line-height: 1.4;
-      margin-top: 8px;
-      padding-top: 10px;
-      border-top: 1px solid #d8d8d8;
-    }
-
-    // Active state — applied via JS when data is loaded
-    &--active {
-      background-color: #f3f2f1;
-      border-left: 6px solid #1d70b8;
-    }
-  
-    &--green {
-      border-left-color: #00703c;
-    }
-  
-    &--amber {
-      border-left-color: #f47738;
-    }
-  
-    &--blue {
-      border-left-color: #1d70b8;
-    }
-  
-    .kpi-value {
-      font-size: 36px;
-      font-weight: bold;
-      margin: 15px 0 5px;
-      color: #0b0c0c;
-    }
-  
-    .kpi-change {
-      margin: 0;
+    .govuk-link {
+      text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 4px;
-      font-weight: bold;
-  
-      &--positive {
-        color: #00703c;
-      }
-  
-      &--negative {
-        color: #d4351c;
-      }
-    }
-  
-    .kpi-footer-text {
-      display: block;
-      margin-top: auto;
-      padding-top: 15px;
+      gap: 12px;
+      padding: 12px 15px;
       color: #505a5f;
-      font-size: 14px;
-      line-height: 1.4;
+      font-size: 16px;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    // Fixed :not() notation
+    &:hover:not(.app-sidebar__list-item--active) {
+      background-color: #ffffff;
+      border-color: #0b0c0c;
+
+      .govuk-link {
+        color: #0b0c0c;
+      }
+    }
+
+    &--active {
+      background-color: #ffffff;
+      border: 2px solid #0b0c0c;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-left: 6px solid #1d70b8;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    // Flattened nesting to solve max-nesting-depth
+    &--active .govuk-link {
+      font-weight: bold;
+      color: #1d70b8;
+      padding-left: 10px;
     }
   }
-  
-  // 3. Chart Grid & Card Styling
-  .charts-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin-top: 30px;
+}
+
+.sidebar-label {
+  margin: 25px 0 10px 15px;
+  color: #0b0c0c;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.app-content-area {
+  flex-grow: 1;
+  padding: 40px;
+}
+
+// 2. KPI Card Styling
+.kpi-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #b1b4b6;
+  border-left: 6px solid #b1b4b6;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
-  
-  .chart-card {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
+
+  &__source {
+    font-size: 14px;
+    color: #505a5f;
+    line-height: 1.4;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid #d8d8d8;
   }
-  
-  // 4. Analytics Page Specifics
-  .analytics-value {
-    display: block;
-    margin-top: 10px;
-    color: #1d70b8;
-    font-family: "GDS Transport", arial, sans-serif;
+
+  &__date {
+    font-size: 12px;
+    color: #505a5f;
+    margin-top: 4px;
+  }
+
+  // Active state — applied via JS when data is loaded
+  &--active {
+    background-color: #f3f2f1;
+    border-left: 6px solid #1d70b8;
+  }
+
+  &--green {
+    border-left-color: #00703c;
+  }
+
+  &--amber {
+    border-left-color: #f47738;
+  }
+
+  &--blue {
+    border-left-color: #1d70b8;
+  }
+
+  .kpi-value {
     font-size: 36px;
     font-weight: bold;
+    margin: 15px 0 5px;
+    color: #0b0c0c;
   }
-  
-  .chart-type-tag {
-    padding: 4px 8px;
-    border: 1px solid #b1b4b6;
-    border-radius: 15px;
-    background: #f3f2f1;
+
+  .kpi-change {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: bold;
+
+    &--positive {
+      color: #00703c;
+    }
+
+    &--negative {
+      color: #d4351c;
+    }
+  }
+
+  .kpi-footer-text {
+    display: block;
+    margin-top: auto;
+    padding-top: 15px;
     color: #505a5f;
-    font-family: "GDS Transport", arial, sans-serif;
     font-size: 14px;
+    line-height: 1.4;
   }
-  
-  .chart-container {
-    position: relative;
-    width: 100%;
-    height: 300px;
+}
+
+// 3. Chart Grid & Card Styling
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.chart-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
   }
+}
+
+// 4. Analytics Page Specifics
+.analytics-value {
+  display: block;
+  margin-top: 10px;
+  color: #1d70b8;
+  font-family: "GDS Transport", arial, sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.chart-type-tag {
+  padding: 4px 8px;
+  border: 1px solid #b1b4b6;
+  border-radius: 15px;
+  background: #f3f2f1;
+  color: #505a5f;
+  font-family: "GDS Transport", arial, sans-serif;
+  font-size: 14px;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+// 5. Settings Page Styles
+.settings-section {
+  border-left: 5px solid #1d70b8;
+  padding-left: 20px;
+}
+
+.settings-date-input {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.settings-table-header--wide {
+  width: 70%;
+}
+
+.settings-table-header--narrow {
+  width: 30%;
+}
+
+.settings-excluded-row {
+  color: #505a5f;
+}
+
+.settings-hidden {
+  display: none;
+}
+
+.settings-visible {
+  display: block;
+}
