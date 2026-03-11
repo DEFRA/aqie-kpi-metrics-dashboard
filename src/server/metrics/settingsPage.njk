@@ -20,14 +20,14 @@
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     {# SECTION 1: COMPLETION RATE #}
-    <section class="govuk-!-margin-bottom-9" style="border-left: 5px solid #1d70b8; padding-left: 20px;">
+    <section class="govuk-!-margin-bottom-9 settings-section">
       <h2 class="govuk-heading-m">1. Completion Rate</h2>
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" role="group">
           <legend class="govuk-fieldset__legend">Date range</legend>
           <div class="govuk-hint">Enter the start and end dates for this measurement period</div>
-          <div class="govuk-date-input" style="display: flex; gap: 20px; align-items: flex-end;">
+          <div class="govuk-date-input settings-date-input">
             <div class="govuk-date-input__item">
               <label class="govuk-label" for="input-completion-date-from">From</label>
               <input class="govuk-input govuk-input--width-10" id="input-completion-date-from" type="date">
@@ -54,14 +54,14 @@
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     {# SECTION 2: COST PER TRANSACTION #}
-    <section class="govuk-!-margin-bottom-9" style="border-left: 5px solid #1d70b8; padding-left: 20px;">
+    <section class="govuk-!-margin-bottom-9 settings-section">
       <h2 class="govuk-heading-m">2. Cost Per Transaction</h2>
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" role="group">
           <legend class="govuk-fieldset__legend">Date range</legend>
           <div class="govuk-hint">Enter the start and end dates for this measurement period</div>
-          <div class="govuk-date-input" style="display: flex; gap: 20px; align-items: flex-end;">
+          <div class="govuk-date-input settings-date-input">
             <div class="govuk-date-input__item">
               <label class="govuk-label" for="input-cost-date-from">From</label>
               <input class="govuk-input govuk-input--width-10" id="input-cost-date-from" type="date">
@@ -96,8 +96,8 @@
           <table class="govuk-table govuk-table--small-text-until-tablet">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header" style="width: 70%;">Cost category</th>
-                <th scope="col" class="govuk-table__header" style="width: 30%;">Amount (&pound;)</th>
+                <th scope="col" class="govuk-table__header settings-table-header--wide">Cost category</th>
+                <th scope="col" class="govuk-table__header settings-table-header--narrow">Amount (&pound;)</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -293,6 +293,93 @@
         <label class="govuk-label" for="input-total-transactions">Total transactions</label>
         <input class="govuk-input govuk-input--width-10" id="input-total-transactions" type="number" step="1">
       </div>
+    </section>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    {# SECTION 3: USER SATISFACTION #}
+    <section class="govuk-!-margin-bottom-9 settings-section">
+      <h2 class="govuk-heading-m">3. User Satisfaction</h2>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="input-satisfaction-file">Upload survey responses (Excel file)</label>
+        <div class="govuk-hint">
+          Upload an Excel file (.xlsx, .xls) with satisfaction responses in column B.
+          Valid responses: Very satisfied, Satisfied, Neither satisfied or dissatisfied, Dissatisfied, Very dissatisfied.
+          "Prefer not to say" and "I don't know" will be excluded.
+        </div>
+        <input class="govuk-file-upload" id="input-satisfaction-file" type="file" accept=".xlsx,.xls">
+      </div>
+
+      {# Results preview #}
+      <div id="satisfaction-preview" class="govuk-!-margin-top-4 settings-hidden">
+        <h3 class="govuk-heading-s">Survey Results Preview</h3>
+        
+        {# Extracted Date Range Display #}
+        <p class="govuk-body govuk-!-font-weight-bold settings-hidden" id="preview-satisfaction-date-range"></p>
+
+        <table class="govuk-table govuk-table--small-text-until-tablet">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Response</th>
+              <th scope="col" class="govuk-table__header">Count</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Very satisfied</td>
+              <td class="govuk-table__cell" id="count-very-satisfied">0</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Satisfied</td>
+              <td class="govuk-table__cell" id="count-satisfied">0</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Neither satisfied or dissatisfied</td>
+              <td class="govuk-table__cell" id="count-neither">0</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Dissatisfied</td>
+              <td class="govuk-table__cell" id="count-dissatisfied">0</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Very dissatisfied</td>
+              <td class="govuk-table__cell" id="count-very-dissatisfied">0</td>
+            </tr>
+            <tr class="govuk-table__row settings-excluded-row">
+              <td class="govuk-table__cell">Prefer not to say (excluded)</td>
+              <td class="govuk-table__cell" id="count-prefer-not">0</td>
+            </tr>
+            <tr class="govuk-table__row settings-excluded-row">
+              <td class="govuk-table__cell">I don't know (excluded)</td>
+              <td class="govuk-table__cell" id="count-dont-know">0</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-font-weight-bold">Satisfied (Very + Satisfied)</td>
+              <td class="govuk-table__cell govuk-!-font-weight-bold" id="count-total-satisfied">0</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-font-weight-bold">Total valid responses</td>
+              <td class="govuk-table__cell govuk-!-font-weight-bold" id="count-total-valid">0</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-font-weight-bold">User satisfaction</td>
+              <td class="govuk-table__cell govuk-!-font-weight-bold" id="preview-satisfaction-rate">0%</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      {# Hidden inputs to store calculated values #}
+      <input type="hidden" id="input-satisfied-responses" value="0">
+      <input type="hidden" id="input-total-responses" value="0">
+      <input type="hidden" id="input-user-satisfaction" value="0">
+      
+      {# Hidden inputs for satisfaction date range extracted from Excel #}
+      <input type="hidden" id="input-satisfaction-date-from" value="">
+      <input type="hidden" id="input-satisfaction-date-to" value="">
     </section>
 
     <button type="button" class="govuk-button" id="btn-submit">
